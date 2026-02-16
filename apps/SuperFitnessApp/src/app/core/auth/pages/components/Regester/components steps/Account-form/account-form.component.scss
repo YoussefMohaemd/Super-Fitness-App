@@ -1,0 +1,188 @@
+.greeting {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 140%;
+  letter-spacing: 0px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.form-box {
+  margin: auto !important;
+  width: 100%;
+  border-radius: 50px;
+  border-width: 1px;
+  gap: 8px;
+  padding: 40px;
+  min-height: 600px;
+  transition: height 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  input {
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 8px 16px;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.10);
+    color: white;
+    outline: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: border 0.2s;
+    box-shadow: none;
+
+    &::placeholder {
+      color: #bbb;
+      opacity: 1;
+    }
+
+    &:focus {
+      border: 1.5px solid #ff4100;
+      background: rgba(255, 255, 255, 0.16);
+    }
+  }
+
+  .forgot {
+    text-align: right;
+    font-size: 13px;
+    margin-bottom: 18px;
+
+    a {
+      color: #ff4100;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
+
+  .divider {
+    text-align: center;
+    margin: 10px 0;
+    color: #bbb;
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1.5px;
+      background: #bbb;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 15px;
+
+    i {
+      color: #fff;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 16px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      background-color: black;
+
+      &:hover {
+        transform: scale(1.1);
+        background: #ff4100;
+        color: #fff;
+      }
+    }
+  }
+
+  .btn {
+    width: 40%;
+    background: #ff4100;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 8px 10px 0;
+
+    &:hover {
+      background: #e83e00;
+    }
+  }
+
+  .switch {
+    margin-top: 18px;
+    font-size: 15px;
+    text-align: center;
+
+    a {
+      color: #ff4100;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .form-box {
+    padding: 25px 20px;
+    min-height: auto;
+    border-radius: 20px;
+
+    .greeting {
+      font-size: 18px;
+    }
+
+    .title {
+      font-size: 20px;
+    }
+
+    input {
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+
+    .btn {
+      font-size: 16px;
+      padding: 14px;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<!-- <p-skeleton styleClass="mb-2" borderRadius="16px" width="10rem" />
+<p-skeleton width="8rem" height="1rem" styleClass="mb-2" borderRadius="16px" /> -->
+<div
+  #chatWindow
+  class="chatbot-window"
+  [class.close]="!isOpen"
+  [class.open]="isOpen"
+>
+  <div class="chatbot-window__container h-full w-full position-relative">
+    <div
+      class="chatbot-window__header mt-[41px] mx-[16px] flex justify-between items-center"
+    >
+      <h2>Smart coach - {{ isLoading$ | async }}</h2>
+      <button>
+        <img src="/chat-menu.png" alt="chat menu" srcset="" />
+      </button>
+    </div>
+    <div class="chatbot-window__contentbox w-full my-5">
+      <div
+        #messagesView
+        class="chatbot-window__messages w-full h-full overflow-y-auto"
+      >
+        <!-- cards here -->
+        @for (chatObj of chatMessagesList; track $index) {
+        <app-message-card [message]="chatObj.content" [role]="chatObj.role" />
+        }@if (isLoading$|async ) {
+        <app-message-card [isLoading]="true" />
+        }
+      </div>
+    </div>
+
+    <div
+      class="chatbot-window__text-area fixed bottom-[10px] left-[16px] right-[16px] w-full"
+    >
+      <app-chatbot-input (onSend)="sendMessage($event)" />
+    </div>
+  </div>
+</div>

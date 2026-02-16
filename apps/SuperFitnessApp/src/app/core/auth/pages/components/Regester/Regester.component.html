@@ -1,0 +1,83 @@
+<div class="register-container">
+  <form [formGroup]="form" (ngSubmit)="isLastStep() ? submit() : next()">
+    <div class="step-wrapper my-5">
+      @switch (currentStep()) { @case (0) {
+      <app-account-form
+        [form]="form"
+        (nextStep)="next()"
+        (submitForm)="submit()"
+      ></app-account-form>
+      } @case (1) {
+      <app-gender
+        [form]="form"
+        [currentStep]="currentStep() + 1"
+        [stepsLength]="steps.length"
+      ></app-gender>
+      } @case (2) {
+      <app-age
+        [form]="form"
+        [ages]="ages"
+        [selectedAgeIndex]="selectedAgeIndex"
+        [positionClassAge]="positionClassAge.bind(this)"
+        [onPickAge]="onPickAge.bind(this)"
+        [currentStep]="currentStep() + 1"
+        [stepsLength]="steps.length"
+      ></app-age>
+      } @case (3) {
+      <app-weight
+        [form]="form"
+        [weights]="weights"
+        [selectedWeightIndex]="selectedWeightIndex"
+        [positionClassWeight]="positionClassWeight.bind(this)"
+        [onPickWeight]="onPickWeight.bind(this)"
+        [currentStep]="currentStep() + 1"
+        [stepsLength]="steps.length"
+      ></app-weight>
+      } @case (4) {
+      <app-height
+        [form]="form"
+        [heights]="heights"
+        [selectedHeightIndex]="selectedHeightIndex"
+        [positionClassHeight]="positionClassHeight.bind(this)"
+        [onPickHeight]="onPickHeight.bind(this)"
+        [currentStep]="currentStep() + 1"
+        [stepsLength]="steps.length"
+      ></app-height>
+      } @case (5) {
+      <app-goal
+        [form]="form"
+        [currentStep]="currentStep() + 1"
+        [stepsLength]="steps.length"
+      ></app-goal>
+      } @case (6) {
+      <app-activity-level
+        [form]="form"
+        [currentStep]="currentStep() + 1"
+        [stepsLength]="steps.length"
+      ></app-activity-level>
+      } }
+    </div>
+
+    <div class="actions">
+      <button
+        type="button"
+        class="btn next-btn"
+        (click)="prev()"
+        [disabled]="isFirstStep()"
+      >
+        Back
+      </button>
+      <button
+        type="submit"
+        class="btn next-btn"
+        [disabled]="loading || !formStepValid()"
+      >
+        {{ isLastStep() ? 'Submit' : 'Next' }}
+      </button>
+    </div>
+
+    @if (errorMessage) {
+    <div class="error">{{ errorMessage }}</div>
+    }
+  </form>
+</div>

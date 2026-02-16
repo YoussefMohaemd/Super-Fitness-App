@@ -1,0 +1,22 @@
+<div class="card">
+  <p-tabs [value]="activeTabIndex()" class="w-full">
+    <p-tablist class="flex justify-center">
+      @for (tab of tabsList; track tab.value) {
+      <p-tab
+        (click)="tabClick($event)"
+        [value]="tab.value!"
+        [attr.data-itemId]="tab.id"
+        class="mx-1"
+        >{{ tab.title }}</p-tab
+      >
+      }
+    </p-tablist>
+    <!-- <p-tabpanels>
+      @for (tab of tabs; track tab.value) {
+      <p-tabpanel [value]="tab.value">
+        <p class="m-0">{{ tab.content }}</p>
+      </p-tabpanel>
+      }
+    </p-tabpanels> -->
+  </p-tabs>
+</div>

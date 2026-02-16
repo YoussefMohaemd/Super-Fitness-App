@@ -1,0 +1,116 @@
+<!-- Overlay -->
+<div class="mt-10 mb-30">
+  <div
+    class="overlay"
+    [ngClass]="{ 'overlay-light': !themeVal, 'overlay-dark': themeVal }"
+  ></div>
+
+  <div class="fitness-container profile-wrapper">
+    <!-- Header Section -->
+    <section class="header-section">
+      <div class="logo-section">
+        <div class="logo-container">
+          <img src="/workouts.png" alt="healthy" class="main-logo" />
+          <div class="subtitle-container">
+            <img
+              src="/HealthyNutritions.png"
+              alt="Healthy Nutritions"
+              class="subtitle-logo"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="main-heading">
+        <h2 class="hero-title">
+          {{ 'fitnessClass.hero_title_1' | translate }}
+          <span class="highlight-text">{{
+            'fitnessClass.hero_title_2' | translate
+          }}</span>
+        </h2>
+      </div>
+    </section>
+
+    <!-- Filter Tabs Section (Carousel) -->
+    <section *ngIf="muscleGroups.length > 0" class="filter-tabs-section">
+      <div class="tabs-container tabs-glass">
+        <p-carousel
+          [value]="filterTabs"
+          [numVisible]="5"
+          [numScroll]="5"
+          [circular]="false"
+          [autoplayInterval]="0"
+          [showNavigators]="true"
+          [showIndicators]="false"
+          [responsiveOptions]="tabResponsiveOptions"
+        >
+          <ng-template pTemplate="item" let-tab>
+            <div class="px-2">
+              <button
+                (click)="onFilterChange(tab.id)"
+                [ngClass]="{
+                  'text-white shadow-lg scale-105': selectedGroupId === tab.id,
+                  'bg-gray-800/70 text-gray-200 hover:bg-gray-700/80':
+                    selectedGroupId !== tab.id
+                }"
+                [ngStyle]="
+                  selectedGroupId === tab.id
+                    ? { background: 'linear-gradient(90deg, #ff7a18, #ff5722)' }
+                    : {}
+                "
+                class="px-2 py-2 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 w-full text-xs md:text-sm flex items-center justify-center gap-2 backdrop-blur-md border border-white/10"
+              >
+                <span class="truncate">
+                  {{
+                    tab.id === 'full_body'
+                      ? ('fitnessClass.full_body' | translate)
+                      : tab.title
+                  }}
+                </span>
+              </button>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </section>
+
+    <!-- Workouts Section -->
+    <section *ngIf="displayedMuscleGroups.length > 0" class="workouts-section">
+      <div class="workouts-slider-container">
+        <app-custom-slider
+          [itemsList]="muscleSliderItems"
+          [numOfRows]="2"
+          [numOfColumns]="3"
+          [autoplayInterval]="0"
+          (mealSelected)="onReadMore($event)"
+        ></app-custom-slider>
+      </div>
+    </section>
+
+    <!-- No Results State -->
+    <section
+      *ngIf="displayedMuscleGroups.length === 0 && muscleGroups.length > 0"
+      class="empty-state"
+    >
+      <div class="empty-content">
+        <p class="empty-title">
+          {{ 'fitnessClass.no_results_title' | translate }}
+        </p>
+        <p class="empty-subtitle">
+          {{ 'fitnessClass.no_results_subtitle' | translate }}
+        </p>
+      </div>
+    </section>
+
+    <!-- Loading State -->
+    <section *ngIf="muscleGroups.length === 0" class="loading-state">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p class="loading-title">{{ 'common.loading_workouts' | translate }}</p>
+        <p class="loading-subtitle">
+          {{ 'common.loading_subtitle' | translate }}
+        </p>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+ 
+ <ng-container *ngIf="showLayout">
+    <app-navbar></app-navbar>
+  </ng-container>
+
+  <router-outlet ></router-outlet>
+
+  <ng-container *ngIf="showLayout">
+    <app-horizonbar class="relative bottom-0 left-0 rtl-full-bleed"></app-horizonbar>
+    <app-chatbot-floating />
+    <app-footer></app-footer>
+  </ng-container>

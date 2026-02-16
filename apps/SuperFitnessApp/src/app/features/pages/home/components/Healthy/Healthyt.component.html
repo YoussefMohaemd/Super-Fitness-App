@@ -1,0 +1,57 @@
+<!-- Overlay -->
+<div class="my-4">
+    <div
+      class="overlay"
+      [ngClass]="{ 'overlay-light': !themeVal, 'overlay-dark': themeVal }"
+    ></div>
+  
+    <div class="healthy-container profile-wrapper">
+      <!-- Header Section -->
+      <section class="header-section">
+        <div class="logo-section">
+          <div class="logo-container">
+            <img src="/Healthy.png" alt="healthy" class="main-logo" />
+            <div class="subtitle-container">
+              <img
+                src="/HealthyNutritions.png"
+                alt="Healthy Nutritions"
+                class="subtitle-logo"
+              />
+            </div>
+          </div>
+        </div>
+  
+        <div class="main-heading">
+          <h2 class="hero-title">
+            {{ 'healthy.hero_title_1' | translate }}
+            <span class="highlight-text">{{ 'healthy.hero_title_2' | translate }}</span>
+            {{ 'healthy.hero_title_3' | translate }}
+          </h2>
+        </div>
+      </section>
+  
+   
+  
+   <!-- Loading Screen -->
+  
+  
+  <!-- Meals Section -->
+  <section *ngIf="!isLoading && displayedMeals.length > 0" class="meals-section">
+    <div class="meals-slider-container">
+      <app-custom-slider
+        [itemsList]="displayedMeals"
+        [numOfRows]="1"
+        [numOfColumns]="3"
+        [autoplayInterval]="0"
+        (mealSelected)="getMealDetails($event)"
+      ></app-custom-slider>
+    </div>
+  </section>
+  
+  
+      
+      <!-- Horizon Bar -->
+     
+    </div>
+  
+  </div>

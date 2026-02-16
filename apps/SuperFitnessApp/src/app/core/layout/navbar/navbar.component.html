@@ -1,0 +1,134 @@
+<!-- navbar.component.html -->
+<nav class="navbar absolute top-0 left-0 w-full z-50 transition-colors duration-300">
+  <div class="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-20 py-4">
+    <!-- Logo -->
+    <a routerLink="/home" class="flex-shrink-0">
+      <img src="logo.png" alt="FitGym Logo" class="w-16 sm:w-20 lg:w-[86px] h-auto" />
+    </a>
+
+    <!-- Links (Desktop) -->
+    <ul class="hidden lg:flex items-center space-x-8">
+      <li>
+        <a routerLink="/home" routerLinkActive="active" class="text-black dark:text-white hover:text-[#ff4100] font-bold">
+          {{ 'nav.home' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about" routerLinkActive="active" class="text-black dark:text-white hover:text-[#ff4100] font-bold">
+          {{ 'nav.about' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/classes" routerLinkActive="active" class="text-black dark:text-white hover:text-[#ff4100] font-bold">
+          {{ 'nav.classes' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/healthy" routerLinkActive="active" class="text-black dark:text-white hover:text-[#ff4100] font-bold">
+          {{ 'nav.healthy' | translate }}
+        </a>
+      </li>
+    </ul>
+
+    <!-- Auth / User Icon -->
+    <div class="flex items-center space-x-2 sm:space-x-4">
+      <ng-container *ngIf="!isLoggedIn; else userBlock">
+        <button routerLink="/auth/login" (click)="closeMenu()"
+                class="hidden sm:inline-block bg-[#FF4100] text-white font-bold rounded-full px-4 py-2 hover:bg-orange-600 transition">
+          {{ 'nav.login' | translate }}
+        </button>
+        <button routerLink="/auth/register" (click)="closeMenu()"
+                class="hidden sm:inline-block border-2 border-[#FF4100] text-[#FF4100] font-bold rounded-full px-4 py-2 hover:bg-[#FF4100] hover:text-white transition">
+          {{ 'nav.signup' | translate }}
+        </button>
+      </ng-container>
+      <ng-template #userBlock>
+        <a routerLink="/user-profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-white">
+          <img src="/user.png" alt="User" class="w-full h-full object-cover" />
+        </a>
+      </ng-template>
+
+      <!-- Mobile menu button -->
+      <button (click)="toggleMenu()" class="lg:hidden inline-flex items-center rounded-full justify-center p-2 bg-[#ff4100] rounded-lg text-white hover:bg-white/20 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+ <!-- backdrop: يغطي الشاشة بالكامل -->
+<div
+*ngIf="isMenuOpen"
+class="fixed inset-0 bg-black/5 backdrop-blur-sm z-40"
+(click)="closeMenu()"
+></div>
+
+<!-- side panel: القايمة الجانبية -->
+<div
+  *ngIf="isMenuOpen"
+  class="lg:hidden transition-colors duration-300 fixed top-0 left-0 w-64 h-[271px] bg-[#242424] opacity-100 z-50 flex flex-col gap-6 pt-6 pr-4 pb-6 pl-4"
+>
+  <!-- Header with Logo -->
+  <div class="flex items-center justify-between">
+    <a routerLink="/home" (click)="closeMenu()" class="flex-shrink-0">
+      <img src="logo.png" alt="FitGym Logo" class="w-12 sm:w-16 h-auto" />
+    </a>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="flex-1">
+    <ul class="flex flex-col space-y-6">
+      <li>
+        <a routerLink="/home" (click)="closeMenu()" class="text-white font-bold hover:text-[#ff4100]">
+          {{ 'nav.home' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about" (click)="closeMenu()" class="text-white font-bold hover:text-[#ff4100]">
+          {{ 'nav.about' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/classes" (click)="closeMenu()" class="text-white font-bold hover:text-[#ff4100]">
+          {{ 'nav.classes' | translate }}
+        </a>
+      </li>
+      <li>
+        <a routerLink="/healthy" (click)="closeMenu()" class="text-white font-bold hover:text-[#ff4100]">
+          {{ 'nav.healthy' | translate }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Auth Buttons -->
+  <div *ngIf="!isLoggedIn" class="flex flex-col space-y-2">
+    <button
+      routerLink="/auth/login"
+      (click)="closeMenu()"
+      class="bg-[#FF4100] text-white font-bold rounded-full py-2 px-4 text-sm hover:bg-orange-600 transition"
+    >
+      {{ 'nav.login' | translate }}
+    </button>
+    <button
+      routerLink="/auth/register"
+      (click)="closeMenu()"
+      class="border-2 border-[#FF4100] text-[#FF4100] font-bold rounded-full py-2 px-4 text-sm hover:bg-[#FF4100] hover:text-white transition"
+    >
+      {{ 'nav.signup' | translate }}
+    </button>
+  </div>
+
+  <!-- Lang toggle -->
+  <div class="px-4 pb-4 lg:hidden">
+    <button (click)="toggleLang()" class="w-full bg-white/10 text-white rounded-full py-2 px-4">
+      {{ 'nav.toggle_lang' | translate }}
+    </button>
+  </div>
+</div>
+
+
+</nav>

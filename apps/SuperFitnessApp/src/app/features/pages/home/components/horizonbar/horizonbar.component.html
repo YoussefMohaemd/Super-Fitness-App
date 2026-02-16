@@ -1,0 +1,13 @@
+<div class="bg-[#FF4100] overflow-hidden">
+    <div class="flex shrink-0 py-6 items-center horizon-scroll">
+      @for (item of horizon; track $index) {
+        <div class="flex items-center shrink-0">
+          <p class="text-[24px] font-bold text-white whitespace-nowrap">
+            {{ item | translate }}
+          </p>
+          <img class="mx-4" src="Vector.png" alt="">
+        </div>
+      }
+    </div>
+  </div>
+  

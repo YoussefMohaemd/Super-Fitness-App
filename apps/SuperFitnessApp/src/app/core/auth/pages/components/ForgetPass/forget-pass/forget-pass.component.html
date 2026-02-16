@@ -1,0 +1,65 @@
+<div class="forget-pass-container">
+  <!-- Step 1: Email -->
+  @if (currentStep === Step.Email) {
+    <div class="step-form">
+      <h2 class="text-center">Forgot Password</h2>
+      <form [formGroup]="emailForm" (ngSubmit)="submitEmail()">
+        <div class="input-group">
+          <input type="email" formControlName="email" placeholder="Email" aria-label="Email" />
+        </div>
+        <button type="submit" [disabled]="emailForm.invalid" class="btn">Send Reset Code</button>
+      </form>
+    </div>
+  }
+
+  <!-- Step 2: OTP -->
+  @if (currentStep === Step.Otp) {
+    <div class="step-form">
+      <h2 class="text-center">OTP Code</h2>
+      <p class="text-center">Enter the 6-digit code sent to your email</p>
+      <form [formGroup]="otpForm" (ngSubmit)="submitOtp()">
+        <div class="otp-inputs">
+          <input autofocus #otpInput *ngFor="let i of [1,2,3,4,5,6]" type="text" maxlength="1" [formControlName]="'digit' + i" (input)="moveToNext($event, i)" /> 
+
+         
+        </div>
+        <button type="submit" [disabled]="otpForm.invalid" class="btn">Confirm</button>
+      </form>
+    </div>
+  }
+
+<!-- Step 3: Reset Password -->
+@if (currentStep === Step.Reset) {
+  <div class="step-form">
+    <h2 class="text-center">Reset Password</h2>
+    <form [formGroup]="resetForm" (ngSubmit)="submitReset()">
+      <div class="input-group">
+        <input
+          type="password"
+          formControlName="newPassword"
+          placeholder="New Password"
+          aria-label="New Password"
+        />
+      </div>
+      <div class="input-group">
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+          aria-label="Confirm Password"
+        />
+      </div>
+      <button type="submit" [disabled]="resetForm.invalid" class="btn">Reset Password</button>
+    </form>
+  </div>
+}
+
+
+
+  <!-- Error/Success Messages -->
+  @if (errorMessage) {
+    <div class="error-message">
+      <span>⚠️</span> {{ errorMessage }}
+    </div>
+  }
+</div>

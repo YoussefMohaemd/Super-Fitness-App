@@ -1,0 +1,14 @@
+<div class="chatbot-container">
+  <div class="chatbot-btn-wrapper">
+    <div class="chatbot-btn-container">
+      <img src="chatbot.png" class="chatbot-img" alt="ai chatbot avatar" />
+      @if (chatStatus$ | async) {
+      <button class="chatbot-button" (click)="closeChat()">Tap to Close</button>
+      } @else {
+      <button class="chatbot-button" (click)="startChat()">Hey Ask Me</button>
+      }
+    </div>
+  </div>
+
+  <app-chatbot-window />
+</div>

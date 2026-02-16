@@ -1,0 +1,44 @@
+section.hero {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
+  
+  .hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/auth-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+  
+  .hero .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    backdrop-filter: blur(30px);
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Light Mode */
+  .hero .overlay-light {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Dark Mode */
+  .hero .overlay-dark {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  /* RTL adjustments */
+  :host-context([dir='rtl']) .hero-text {
+    text-align: right;
+  }
+  :host-context([dir='rtl']) .cta-arrow {
+    right: auto !important;
+    left: -1rem !important;
+    transform: translateY(-50%) scaleX(-1) !important;
+  }
+  

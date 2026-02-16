@@ -1,0 +1,36 @@
+/* RTL Adjustments */
+:host-context([dir='rtl']) .badge-pos {
+  left: auto;
+  right: 1rem;
+  flex-direction: row-reverse;
+}
+
+:host-context([dir='rtl']) .about-section.lg\:flex-row {
+  flex-direction: row-reverse;
+}
+
+:host-context([dir='rtl']) .content-col {
+  text-align: right;
+}
+
+:host-context([dir='rtl']) .feature-item {
+  flex-direction: row-reverse;
+}
+:host-context([dir='rtl']) .feature-item > * {
+  margin-left: 0.5rem;
+  margin-right: 0; /* remove wrong spacing */
+}
+
+:host-context([dir='rtl']) .img-top-right {
+  right: auto;
+  left: -12rem;
+}
+:host-context([dir='rtl']) .img-bottom-right {
+  right: auto;
+  left: -8rem;
+}
+
+/* Make sure container doesn't clip */
+.hero {
+  overflow: visible;
+}

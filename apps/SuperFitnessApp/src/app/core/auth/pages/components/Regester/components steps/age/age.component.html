@@ -1,0 +1,22 @@
+<div class="step-header mb-5">
+  <div class="arc"></div>
+  <div class="step-indicator">{{ currentStep }}/{{ stepsLength }}</div>
+</div>
+
+<h2 class="picker-title">How Old Are You ?</h2>
+<p class="picker-subtitle">This Helps Us Create Your Personalized Plan</p>
+
+<div class="picker-list">
+  @for (age of ages; track age) {
+    <div
+      class="picker-item"
+      [ngClass]="positionClassAge($index)"
+      (click)="onPickAge(age)"
+    >
+      {{ age }}
+      @if (positionClassAge($index) === 'center') {
+        <span class="arrow-up"></span>
+      }
+    </div>
+  }
+</div>

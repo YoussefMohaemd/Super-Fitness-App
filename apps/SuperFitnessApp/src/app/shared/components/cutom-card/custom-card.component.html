@@ -1,0 +1,15 @@
+<div class="card-container group" (click)="readMore()">
+  <!-- Background Image with scale effect -->
+  <div 
+    class="card-img"
+    [style.background-image]="'url(' + cardImg() + ')'">
+  </div>
+
+  <!-- Overlay for text only at bottom (no scale) -->
+  <div class="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-md flex flex-col p-4">
+    <p class="text-white text-lg font-semibold mb-2">{{ cardTitle() }}</p>
+    <div class="card-footer__readMore ">
+      <div class="card-footer__readMore__text flex">Explore <img src="/exploreIcon.png" alt="Explore"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'tailwindcss';
+@use 'flowbite/src/themes/default';
+
+@import 'primeicons/primeicons.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: 'BalooThambi2';
+  src: url('/fonts/BalooThambi2-Regular.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'BalooThambi2';
+  src: url('/fonts/BalooThambi2-Bold.woff') format('woff');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'BalooThambi2';
+  src: url('/fonts/BalooThambi2-ExtraBold.woff') format('woff');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'BalooThambi2';
+  src: url('/fonts/BalooThambi2-SemiBold.woff') format('woff');
+  font-weight: 600;
+}
+
+:root {
+  --primary-color: #ff4100;
+  --text-color: #333333;
+  --border-radius: 20px;
+  --font-family: 'BalooThambi2', sans-serif;
+}
+
+
+
+.color-242424 {
+  color: #242424;
+}
+.color-FF4100 {
+  color: #ff4100;
+}
+.bg-FF4100 {
+  background: #ff4100;
+}
+.bg-FFFF2 {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(86px);
+}
+.bg-F3F3F4 {
+  background: #f3f3f4;
+}
+
+// @import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;600;700&display=swap');
+
+html,
+body {
+  // font-family: 'Baloo Thambi 2', system-ui, sans-serif;
+  font-family: var(--font-family), system-ui, sans-serif;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(86.099px);
+  z-index: 1;
+}
+.z {
+  z-index: 2;
+}
+
+
+.p-tablist-content .p-tablist-tab-list {
+  border-width: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.p-tablist-content .p-tablist-tab-list .p-ripple.p-tab.p-component {
+  color: white;
+  border-width: 0;
+  padding-inline: 10px;
+}
+
+.p-tablist-content .p-tablist-tab-list .p-ripple.p-tab.p-component.p-tab-active {
+  background-color: var(--primary-color);
+}
+
+.p-tablist-content .p-tablist-tab-list .p-tab {
+  text-align: center;
+  justify-content: center;
+  border-width: 0;
+  opacity: 1;
+  height: 35px;
+  min-width: 70px;
+  gap: 8px;
+  border-radius: 20px;
+  padding: 8px;
+  margin: 0 4px;
+}
+
+.p-tablist-content .p-tablist-tab-list .p-tablist-active-bar {
+  width: 0px !important;
+  border-width: 0;
+}
+ 
+
+/* Scrollbar في Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* الخلفية */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FF4100; /* اللون البرتقالي */
+  border-radius: 10px;
+}
+
+/* Scrollbar في Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #FF4100 transparent;
+}

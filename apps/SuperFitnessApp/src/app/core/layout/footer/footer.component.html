@@ -1,0 +1,77 @@
+<footer class="transition-colors mt-10 duration-300">
+  <div class="px-4 sm:px-6 lg:px-20">
+    <div class="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-16 mb-10">
+      
+      <!-- Company Info -->
+      <div class="w-full lg:w-[18%] text-center lg:text-left">
+        <img
+          src="logo.png"
+          alt="FitGym Logo"
+          class="w-[86px] h-[54px] mx-auto lg:mx-0 mb-4"
+        />
+        <div class="space-y-1 text-rtl">
+          <p class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[29px] text-[#242424] dark:text-white">
+            {{ 'footer.tagline_line1' | translate }}
+          </p>
+          <p class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[29px] text-[#242424] dark:text-white">
+            {{ 'footer.tagline_line2' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Contact Us -->
+      <div class="w-full lg:w-[14%] text-center lg:text-left text-rtl">
+        <h3 class="text-[18px] font-bold font-['Baloo_Thambi_2'] leading-[29px] uppercase text-[#242424] dark:text-white mb-6">
+          {{ 'footer.contact_us' | translate }}
+        </h3>
+        <div class="space-y-4">
+          <a href="tel:+911234567890" class="flex items-center justify-center lg:justify-start gap-4 hover:text-[#ff4100] transition-colors">
+            <img src="tele.png" alt="{{ 'footer.phone_label' | translate }}" class="w-[16px] h-[16px]" />
+            <span class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[29px] text-[#242424] dark:text-white">
+              {{ 'footer.phone' | translate }}
+            </span>
+          </a>
+          <a href="mailto:info@gmail.com" class="flex items-center justify-center lg:justify-start gap-4 hover:text-[#ff4100] transition-colors">
+            <button class="border border-[#242424] dark:border-white p-2 rounded-full">
+              <img src="inbox.png" alt="{{ 'footer.email_label' | translate }}" class="w-[16px] h-[16px]" />
+            </button>
+            <span class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[29px] text-[#242424] dark:text-white">
+              {{ 'footer.email' | translate }}
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Gym Timing -->
+      <div class="w-full lg:w-[18%] text-center lg:text-left text-rtl">
+        <h3 class="text-[18px] font-bold font-['Baloo_Thambi_2'] leading-[29px] uppercase text-[#242424] dark:text-white mb-6">
+          {{ 'footer.our_gym_timing' | translate }}
+        </h3>
+        <div class="space-y-2">
+          <p class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[25px] text-[#242424] dark:text-white">
+            {{ 'footer.mon_fri' | translate }}
+          </p>
+          <p class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[25px] text-[#242424] dark:text-white">
+            {{ 'footer.sat_sun' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="w-full lg:w-[16%] text-center lg:text-left text-rtl">
+        <h3 class="text-[18px] font-bold font-['Baloo_Thambi_2'] leading-[29px] uppercase text-[#242424] dark:text-white mb-6">
+          {{ 'footer.our_location' | translate }}
+        </h3>
+        <div class="space-y-1">
+          <a href="#" class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[25px] text-[#242424] dark:text-white hover:text-[#ff4100] transition-colors block">
+            {{ 'footer.address_line1' | translate }}
+          </a>
+          <a href="#" class="text-[18px] font-normal font-['Baloo_Thambi_2'] leading-[25px] text-[#242424] dark:text-white hover:text-[#ff4100] transition-colors block">
+            {{ 'footer.address_line2' | translate }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>

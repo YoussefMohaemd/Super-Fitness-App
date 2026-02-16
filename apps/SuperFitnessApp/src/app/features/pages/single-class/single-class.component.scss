@@ -1,0 +1,532 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(30px);
+  transition: background-color 0.3s ease;
+}
+
+/* Light mode overlay */
+.overlay-light {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Dark mode overlay */
+.overlay-dark {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Light mode text colors */
+.overlay-light ~ .profile-wrapper {
+color: #242424;
+}
+
+.overlay-light ~ .profile-wrapper .logo-text,
+.overlay-light ~ .profile-wrapper .subtitle-text,
+.overlay-light ~ .profile-wrapper .hero-title {
+color: #242424;
+text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.profile-wrapper {
+position: relative;
+z-index: 2;
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 100vh;
+justify-content: flex-start;
+padding: 1rem;
+max-width: 1400px;
+margin: 0 auto;
+gap: 2rem;
+}
+
+/* Header small */
+.header-section img {
+  max-height: 110px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Tabs container (carousel) */
+.tabs-container {
+  max-width: 1100px;
+  margin: 4px auto 10px; /* slight spacing around carousel */
+  padding: 0 6px;
+  z-index: 5;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* pills */
+.tabs-container button {
+  min-width: 96px;
+  height: 36px;
+  border-radius: 999px;
+  padding: 0 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: #dbeafe;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.tabs-container button:hover {
+  transform: translateY(-3px);
+}
+.tabs-container button.active {
+  background: linear-gradient(90deg, #ff7a18, #ff5722);
+  box-shadow: 0 10px 30px rgba(255, 90, 20, 0.18), 0 2px 6px rgba(0, 0, 0, 0.6);
+  color: #fff;
+  transform: translateY(-4px);
+  border: none;
+}
+
+/* الصفحة الرئيسية: grid */
+.workouts-section .grid {
+  display: grid;
+  grid-template-columns: 409px 1fr;
+  gap: 1rem; /* reduce gap between sidebar and main */
+  padding: 0 1rem 1rem; /* inner padding to keep content off edges */
+}
+
+/* LEFT SIDEBAR */
+.aside-panel {
+  height: 736px;
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 0.75rem; /* slightly tighter */
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6) inset;
+  overflow: hidden;
+}
+
+/* difficulty pills */
+.difficulty-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.difficulty-p {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #e6eef6;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.difficulty-p:hover {
+  transform: translateY(-3px);
+}
+.difficulty-p.active {
+  background: linear-gradient(90deg, #ff7a18, #ff5722);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(255, 90, 20, 0.18);
+}
+
+/* notice */
+.notice {
+  background: rgba(255, 146, 77, 0.12);
+  color: #ffd8bf;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 146, 77, 0.12);
+}
+
+/* exercise list scroll */
+.ex-list {
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* each item */
+.exercise-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 12px;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.01),
+    rgba(0, 0, 0, 0.12)
+  );
+}
+.exercise-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.exercise-item .thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.exercise-item .meta {
+  min-width: 0;
+  flex: 1;
+}
+.exercise-item .title {
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.exercise-item .sub {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  opacity: 0.85;
+}
+.exercise-item .tag {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: #ffd8bf;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.pointer{
+  cursor: pointer !important;
+}
+/* selected */
+.exercise-item.selected {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 122, 40, 0.08),
+    rgba(255, 122, 40, 0.04)
+  );
+  border: 1px solid rgba(255, 122, 40, 0.18);
+  box-shadow: 0 14px 40px rgba(255, 102, 20, 0.06);
+}
+
+/* Play button inside list */
+.play-small {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #ff7a18, #ff5722);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(255, 90, 20, 0.2);
+  border: none;
+}
+
+/* MAIN area (video card) */
+.video-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.25)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.video-hero {
+  position: relative;
+  height: 536px;
+  background: #111;
+}
+.hero-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.55);
+}
+
+/* big circular play */
+.play-big {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 122, 40, 0.12)
+    ),
+    linear-gradient(90deg, #ff7a18, #ff5722);
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(255, 90, 20, 0.24), 0 3px 10px rgba(0, 0, 0, 0.6);
+  border: 3px solid rgba(255, 255, 255, 0.06);
+}
+
+/* video metadata overlay */
+.video-meta {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 28px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.video-meta h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  margin: 0;
+}
+.video-meta p {
+  color: #d1d5db;
+  opacity: 0.95;
+  max-width: 70%;
+}
+
+/* stats chips */
+.chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.chip {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+/* details below */
+.exercise-details {
+  padding: 16px 22px 24px;
+}
+
+/* action buttons */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+.btn-primary {
+  background: linear-gradient(90deg, #ff7a18, #ff5722);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 12px 32px rgba(255, 90, 20, 0.18);
+}
+.btn-outline {
+  background: rgba(255, 255, 255, 0.02);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* recommendation cards */
+.recommendations {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+}
+.rec-card {
+  width: 260px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.25)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 18px 50px rgba(2, 4, 10, 0.6);
+  transform-origin: center;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.rec-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 26px 60px rgba(2, 4, 10, 0.75);
+}
+.rec-thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+.rec-body {
+  padding: 12px 14px;
+}
+.rec-title {
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.rec-sub {
+  font-size: 0.88rem;
+  color: #d1d5db;
+}
+
+/* small badge bottom right like in figma */
+.rec-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff7a18, #ff5722);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* scrollbar styles for webkit */
+.ex-list::-webkit-scrollbar {
+  width: 8px;
+}
+.ex-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ex-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 122, 40, 0.18);
+  border-radius: 6px;
+}
+
+/* responsiveness */
+@media (max-width: 1024px) {
+  .workouts-section .grid {
+    grid-template-columns: 1fr;
+  }
+  .aside-panel {
+    height: auto;
+    order: 2;
+  }
+  .video-card {
+    order: 1;
+  }
+  .video-hero { height: 420px; }
+  .recommendations {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .recommendations .rec-card {
+    flex: 0 0 auto;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .profile-wrapper { padding: 1rem 0.75rem 1.5rem; gap: 0.75rem; }
+  .tabs-container { max-width: 100%; padding: 0 8px; }
+  .tabs-container button { min-width: 86px; font-size: 0.75rem; height: 34px; }
+  .video-hero { height: 320px; }
+  .video-meta p { max-width: 90%; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .tabs-container button { min-width: 74px; font-size: 0.7rem; height: 32px; }
+  .difficulty-row { flex-wrap: wrap; gap: 6px; }
+  .video-hero { height: 240px; }
+  .video-meta { left: 16px; right: 16px; bottom: 16px; }
+  .video-meta h2 { font-size: 20px; }
+  .chips { flex-wrap: wrap; }
+  .exercise-details { padding: 12px 14px 16px; }
+  /* Hide overlay text on the video for small screens */
+  .video-meta { display: none; }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .tabs-container { padding: 0 4px; }
+  .tabs-container button { min-width: 68px; font-size: 0.66rem; height: 30px; }
+  .video-hero { height: 200px; }
+  .play-big { width: 64px; height: 64px; }
+  .chips { gap: 6px; }
+}
+
+/* Loading State Styles (match Fitness Class) */
+.loading-state {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  animation: pulse 2s infinite;
+}
+
+.loading-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.loading-subtitle {
+  font-size: 1rem;
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+/* Light mode styles for loading state */
+.overlay-light ~ .profile-wrapper .loading-content {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+.overlay-light ~ .profile-wrapper .loading-title {
+  color: #242424;
+}
+.overlay-light ~ .profile-wrapper .loading-subtitle {
+  color: #666666;
+}
+.overlay-light ~ .profile-wrapper .loading-spinner {
+  background: rgba(0, 0, 0, 0.1);
+}

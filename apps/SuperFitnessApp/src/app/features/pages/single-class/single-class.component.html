@@ -1,0 +1,448 @@
+<div class="mt-10 mb-30">
+  <div
+    class="overlay"
+    [ngClass]="{ 'overlay-light': !themeVal, 'overlay-dark': themeVal }"
+  ></div>
+
+  <div class="profile-wrapper single-class-container mt-10 mb-30">
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="empty-state">
+      <div class="empty-content">
+        <h2 class="empty-title">{{ error | translate }}</h2>
+        <button
+          (click)="goBack()"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full"
+        >
+          {{ 'common.go_back' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div *ngIf="!loading && !error && muscleGroupDetail" class="w-full">
+      <!-- Header -->
+      <section class="header-section">
+        <div
+          class="w-full flex items-center justify-center mt-[30px] relative z-20"
+        >
+          <img src="/workouts.png" alt="Workouts" class="max-w-full h-auto" />
+        </div>
+        <div class="mt-4 flex items-center justify-center">
+          <button
+            (click)="goBack()"
+            class="text-orange-500 hover:text-orange-400 text-sm"
+          >
+            {{ 'singleClass.back_to_classes' | translate }}
+          </button>
+        </div>
+      </section>
+
+      <!-- Filter Tabs (carousel) -->
+      <section *ngIf="muscleGroups.length > 0" class="filter-tabs-section">
+        <div class="tabs-container pointer">
+          <p-carousel
+            [value]="filterTabs"
+            [numVisible]="5"
+            [numScroll]="5"
+            [circular]="false"
+            [autoplayInterval]="0"
+            [showNavigators]="true"
+            [showIndicators]="false"
+            [responsiveOptions]="tabResponsiveOptions"
+          >
+            <ng-template pTemplate="item" let-tab>
+              <div class="px-2">
+                <button
+                  (click)="onFilterChange(tab.id)"
+                  [ngClass]="{
+                    active: selectedGroupId === tab.id
+                  }"
+                  class="px-2 my-6 py-2 pointer rounded-full font-semibold uppercase tracking-wide transition-all duration-300 w-full text-xs md:text-sm flex items-center justify-center gap-2"
+                >
+                  <span class="truncate pointer">{{
+                    tab.id === 'full_body'
+                      ? ('fitnessClass.full_body' | translate)
+                      : tab.title
+                  }}</span>
+                </button>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </section>
+
+      <!-- Main Grid -->
+      <section class="workouts-section">
+        <div class="grid">
+          <!-- Left Sidebar -->
+          <aside class="aside-panel">
+            <!-- Difficulty Row -->
+            <div class="difficulty-row">
+              <button
+                *ngFor="let level of difficultyLevels"
+                (click)="selectedDifficulty = level.id; onDifficultyChange()"
+                [ngClass]="{ active: selectedDifficulty === level.id }"
+                class="difficulty-p"
+              >
+                {{ level.name | translate }}
+              </button>
+            </div>
+
+            <!-- Notice -->
+            <div *ngIf="notice" class="notice">
+              {{ notice | translate }}
+            </div>
+
+            <!-- Exercise List -->
+            <div class="ex-list" role="list">
+              <div
+                *ngFor="let exercise of exercises; let i = index"
+                class="exercise-item"
+                [ngClass]="{ selected: selectedExercise?._id === exercise._id }"
+                (click)="selectExercise(exercise)"
+              >
+                <img
+                  class="thumb"
+                  [src]="
+                    getVideoThumbnail(exercise.short_youtube_demonstration_link)
+                  "
+                  alt="thumb"
+                  loading="lazy"
+                  (error)="onThumbnailError($event)"
+                />
+                <div class="meta">
+                  <div class="title">{{ exercise.exercise }}</div>
+                  <div class="sub">
+                    {{ exercise.primary_equipment }} •
+                    {{ exercise.target_muscle_group }}
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: 8px;
+                  "
+                >
+                  <button
+                    (click)="
+                      $event.stopPropagation();
+                      playVideo(exercise.short_youtube_demonstration_link)
+                    "
+                    class="play-small"
+                    aria-label="play"
+                    title="Open demo in new tab"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M8 5v14l11-7L8 5z" fill="white" />
+                    </svg>
+                  </button>
+                  <span class="tag">3x15</span>
+                </div>
+              </div>
+
+              <div
+                *ngIf="exercises.length === 0"
+                class="text-center py-8 text-gray-400"
+              >
+                {{ 'singleClass.no_exercises' | translate }}
+              </div>
+            </div>
+          </aside>
+
+          <!-- Main Content Area -->
+          <div>
+            <div class="video-card">
+              <!-- Selected Exercise -->
+              <div *ngIf="selectedExercise">
+                <div class="video-hero">
+                  <ng-container *ngIf="!isPlaying; else player">
+                    <img
+                      class="hero-thumb"
+                      [src]="
+                        getVideoThumbnail(
+                          selectedExercise.short_youtube_demonstration_link
+                        )
+                      "
+                      alt="Exercise thumbnail"
+                      loading="lazy"
+                      (error)="onThumbnailError($event)"
+                    />
+                    <div
+                      style="
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <button
+                        (click)="playSelected()"
+                        class="play-big pointer"
+                        aria-label="play selected"
+                      >
+                        <svg
+                          width="28"
+                          height="28"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path d="M8 5v14l11-7L8 5z" fill="white" />
+                        </svg>
+                      </button>
+                    </div>
+                  </ng-container>
+
+                  <ng-template #player>
+                    <iframe
+                      class="w-full h-full pointer"
+                      [src]="embedUrl"
+                      title="Exercise player"
+                      frameborder="0"
+                      allow="autoplay; encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      style="width: 100%; height: 100%; border: 0"
+                    ></iframe>
+                  </ng-template>
+
+                  <!-- bottom overlay meta -->
+                  <div
+                    class="video-meta"
+                    *ngIf="!isPlaying"
+                    aria-hidden="false"
+                  >
+                    <h2>
+                      {{ selectedExercise.target_muscle_group }}
+                      {{ 'singleClass.exercise' | translate }}
+                    </h2>
+                    <p>
+                      {{ selectedExercise.exercise }} —
+                      {{ 'singleClass.quick_overview' | translate }}
+                    </p>
+                    <div class="chips">
+                      <div class="chip">
+                        30 {{ 'singleClass.min' | translate }}
+                      </div>
+                      <div class="chip">
+                        130 {{ 'singleClass.cal' | translate }}
+                      </div>
+                      <div class="chip">
+                        {{ 'singleClass.expert_workout' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Exercise Details -->
+                <div class="exercise-details">
+                  <h2
+                    style="
+                      font-size: 1.6rem;
+                      font-weight: 800;
+                      color: #fff;
+                      margin: 0 0 8px;
+                    "
+                  >
+                    {{ selectedExercise.exercise }}
+                  </h2>
+
+                  <p style="color: #cbd5e1; margin-bottom: 12px">
+                    {{ selectedExercise.exercise }} is a
+                    {{ selectedExercise.difficulty_level.toLowerCase() }} level
+                    exercise targeting the
+                    {{ selectedExercise.target_muscle_group.toLowerCase() }}.
+                    This exercise primarily works the
+                    {{ selectedExercise.prime_mover_muscle }} and uses
+                    {{ selectedExercise.primary_equipment.toLowerCase() }}
+                    equipment.
+                  </p>
+
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: repeat(2, 1fr);
+                      gap: 12px;
+                    "
+                  >
+                    <div
+                      style="
+                        background: rgba(255, 255, 255, 0.03);
+                        padding: 12px;
+                        border-radius: 10px;
+                      "
+                    >
+                      <h4
+                        style="
+                          color: #ff7a18;
+                          font-weight: 700;
+                          margin: 0 0 6px;
+                        "
+                      >
+                        Equipment
+                      </h4>
+                      <p style="color: #fff; margin: 0">
+                        {{ selectedExercise.primary_equipment }}
+                      </p>
+                    </div>
+                    <div
+                      style="
+                        background: rgba(255, 255, 255, 0.03);
+                        padding: 12px;
+                        border-radius: 10px;
+                      "
+                    >
+                      <h4
+                        style="
+                          color: #ff7a18;
+                          font-weight: 700;
+                          margin: 0 0 6px;
+                        "
+                      >
+                        Difficulty
+                      </h4>
+                      <p style="color: #fff; margin: 0">
+                        {{ selectedExercise.difficulty_level }}
+                      </p>
+                    </div>
+                    <div
+                      style="
+                        background: rgba(255, 255, 255, 0.03);
+                        padding: 12px;
+                        border-radius: 10px;
+                      "
+                    >
+                      <h4
+                        style="
+                          color: #ff7a18;
+                          font-weight: 700;
+                          margin: 0 0 6px;
+                        "
+                      >
+                        Primary Muscle
+                      </h4>
+                      <p style="color: #fff; margin: 0">
+                        {{ selectedExercise.prime_mover_muscle }}
+                      </p>
+                    </div>
+                    <div
+                      style="
+                        background: rgba(255, 255, 255, 0.03);
+                        padding: 12px;
+                        border-radius: 10px;
+                      "
+                    >
+                      <h4
+                        style="
+                          color: #ff7a18;
+                          font-weight: 700;
+                          margin: 0 0 6px;
+                        "
+                      >
+                        Mechanics
+                      </h4>
+                      <p style="color: #fff; margin: 0">
+                        {{ selectedExercise.mechanics }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="actions" style="margin-top: 14px">
+                    <button
+                      (click)="
+                        playVideo(
+                          selectedExercise.short_youtube_demonstration_link
+                        )
+                      "
+                      class="btn-primary"
+                    >
+                      {{ 'singleClass.watch_demo' | translate }}
+                    </button>
+                    <button
+                      *ngIf="selectedExercise.in_depth_youtube_explanation_link"
+                      (click)="
+                        playVideo(
+                          selectedExercise.in_depth_youtube_explanation_link!
+                        )
+                      "
+                      class="btn-outline"
+                    >
+                      {{ 'singleClass.detailed_explanation' | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Default State when no selection -->
+              <div *ngIf="!selectedExercise" class="text-center py-12">
+                <div
+                  class="w-24 h-24 bg-gray-700/50 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-600/50"
+                >
+                  <svg
+                    class="w-12 h-12 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-2" style="color: #fff">
+                  {{ 'singleClass.select_exercise' | translate }}
+                </h3>
+                <p style="color: #9ca3af">
+                  {{ 'singleClass.select_exercise_sub' | translate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommendation For You -->
+      <section *ngIf="exercises.length > 0" class="mt-8">
+        <h3
+          style="
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+          "
+        >
+          {{ 'singleClass.recommendation' | translate }}
+        </h3>
+
+        <app-custom-slider
+          [itemsList]="recommendationItems"
+          [numOfRows]="1"
+          [numOfColumns]="3"
+          [autoplayInterval]="0"
+          (mealSelected)="onRecommendationSelect($event)"
+        ></app-custom-slider>
+      </section>
+      <section *ngIf="musclesLoading" class="loading-state">
+        <div class="loading-content">
+          <div class="loading-spinner"></div>
+          <p class="loading-title">
+            {{ 'common.loading_workouts' | translate }}
+          </p>
+          <p class="loading-subtitle">
+            {{ 'common.loading_subtitle' | translate }}
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

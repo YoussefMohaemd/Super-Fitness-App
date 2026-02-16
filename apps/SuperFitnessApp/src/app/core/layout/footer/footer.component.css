@@ -1,0 +1,8 @@
+:host-context([dir='rtl']) .text-rtl {
+  text-align: right;
+}
+
+:host-context([dir='rtl']) footer .flex {
+  flex-direction: row-reverse;
+}
+

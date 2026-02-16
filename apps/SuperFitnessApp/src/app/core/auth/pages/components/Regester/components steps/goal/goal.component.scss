@@ -1,0 +1,169 @@
+/* goal-step.component.scss */
+.step-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+
+  .arc {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: conic-gradient(#ff4100 0deg 300.6deg, transparent 300.6deg 360deg);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mask: radial-gradient(circle at center, transparent 65%, black 66%);
+  }
+
+  .step-indicator {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+}
+
+.goal-step {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  padding: 40px 20px;
+
+  .title {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    color: #d2d2d2;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .label-text {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .radio-circle {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        position: relative;
+        transition: all 0.2s;
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 3px;
+          background: #ff4100;
+          border-radius: 50%;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+      }
+
+      input:checked + .label-text + .radio-circle {
+        border-color: #ff4100;
+
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      &:hover {
+        border-color: #ff4100;
+      }
+    }
+  }
+
+  .btn-next {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    background: #ff4100;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:disabled {
+      background: rgba(255, 65, 0, 0.5);
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: #e83e00;
+    }
+  }
+}
+
+/* ✅ تحسين الـ responsiveness */
+@media (max-width: 768px) {
+  .goal-step {
+    padding: 20px 15px;
+
+    .title {
+      font-size: 20px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .options {
+      gap: 10px;
+
+      .option {
+        padding: 10px 14px;
+        .label-text {
+          font-size: 14px;
+        }
+
+        .radio-circle {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+  }
+}

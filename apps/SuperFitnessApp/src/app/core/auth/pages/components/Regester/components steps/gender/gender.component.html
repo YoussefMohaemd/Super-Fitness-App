@@ -1,0 +1,27 @@
+<div class="step-header mb-5">
+  <div class="arc"></div>
+  <div class="step-indicator">{{ currentStep }}/{{ stepsLength }}</div>
+</div>
+
+<div class="gender-title">Tell Us Your Gender</div>
+<div class="gender-subtitle">Select one option</div>
+<div class="gender-options">
+  <button
+    type="button"
+    class="gender-btn"
+    [class.selected]="form.value.gender === 'male'"
+    (click)="form.get('gender')?.setValue('male')"
+  >
+    <span class="gender-icon">♂</span>
+    <span class="gender-label">Male</span>
+  </button>
+  <button
+    type="button"
+    class="gender-btn"
+    [class.selected]="form.value.gender === 'female'"
+    (click)="form.get('gender')?.setValue('female')"
+  >
+    <span class="gender-icon">♀</span>
+    <span class="gender-label">Female</span>
+  </button>
+</div>

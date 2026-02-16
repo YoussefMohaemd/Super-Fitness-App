@@ -1,0 +1,105 @@
+{
+  "name": "SuperFitnessApp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/SuperFitnessApp/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/SuperFitnessApp",
+        "index": "apps/SuperFitnessApp/src/index.html",
+        "browser": "apps/SuperFitnessApp/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/SuperFitnessApp/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/SuperFitnessApp/public"
+          }
+        ],
+        "styles": [
+          "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+          "node_modules/flowbite/dist/flowbite.min.css",
+          "apps/SuperFitnessApp/src/styles.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/SuperFitnessApp/src", "node_modules"]
+        },
+        "scripts": [
+          "node_modules/flowbite/dist/flowbite.min.js"
+        ],
+        "server": "apps/SuperFitnessApp/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/SuperFitnessApp/src/server.ts"
+        },
+        "outputMode": "server"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+ "serve": {
+  "executor": "@angular-devkit/build-angular:dev-server",
+  "configurations": {
+    "production": {
+      "buildTarget": "SuperFitnessApp:build:production"
+    },
+    "development": {
+      "buildTarget": "SuperFitnessApp:build:development",
+      "proxyConfig": "apps/SuperFitnessApp/proxy.conf.json"
+    }
+  },
+  "defaultConfiguration": "development"
+},
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "SuperFitnessApp:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/SuperFitnessApp/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "SuperFitnessApp:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/SuperFitnessApp/browser",
+        "spa": true
+      }
+    }
+  }
+}

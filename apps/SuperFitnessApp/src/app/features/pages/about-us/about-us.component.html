@@ -1,0 +1,117 @@
+<div
+  class="flex flex-col lg:flex-row pt-16 px-15 max-sm:px-10 max-sm:mt-5 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 lg:pb-24 gap-6 sm:gap-8 md:gap-10 lg:gap-12 about-section"
+>
+  <!-- Content Section -->
+  <div class="w-full lg:w-1/2 flex flex-col order-1 lg:order-2 justify-center content-col">
+    <!-- Header Badge -->
+    <div class="relative mb-6 sm:mb-8 lg:mb-12">
+      <img
+        src="workouts.png"
+        alt="About Us"
+        class="w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[350px]"
+      />
+      <div class="absolute bottom-2 left-4 flex items-center space-x-2 badge-pos">
+        <img src="weight.png" alt="Icon" class="w-5 h-5 sm:w-6 sm:h-6" />
+        <span class="text-[#FF4100] text-xs sm:text-sm md:text-base font-semibold">
+          {{ 'about.badge' | translate }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Title & Description -->
+    <div class="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
+      <h2 class="text-[#242424] dark:text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        {{ 'about.title_1' | translate }}
+      </h2>
+      <h2 class="text-[#FF4100] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        {{ 'about.title_2_a' | translate }}
+        <span class="text-[#242424] dark:text-white">{{ 'about.title_2_b' | translate }}</span>
+      </h2>
+      <p class="text-[#242424] dark:text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed">
+        {{ 'about.desc' | translate }}
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mt-6 sm:mt-8 lg:mt-12">
+      <div class="border-b border-gray-200 dark:border-gray-700 pb-4 sm:pb-6">
+        <div class="flex items-center mb-3 sm:mb-4 space-x-2 sm:space-x-3 feature-item">
+          <img src="arrow2.png" alt="" class="w-4 h-4 sm:w-5 sm:h-5" />
+          <h4 class="text-[#242424] dark:text-white text-sm sm:text-base lg:text-lg font-bold">
+            {{ 'about.f1_title' | translate }}
+          </h4>
+        </div>
+        <p class="text-[#242424] dark:text-gray-300 text-xs sm:text-sm lg:text-base">
+          {{ 'about.f1_desc' | translate }}
+        </p>
+      </div>
+
+      <div class="border-b border-gray-200 dark:border-gray-700 pb-4 sm:pb-6">
+        <div class="flex items-center mb-3 sm:mb-4 space-x-2 sm:space-x-3 feature-item">
+          <img src="arrow2.png" alt="" class="w-4 h-4 sm:w-5 sm:h-5" />
+          <h4 class="text-[#242424] dark:text-white text-sm sm:text-base lg:text-lg font-bold">
+            {{ 'about.f2_title' | translate }}
+          </h4>
+        </div>
+        <p class="text-[#242424] dark:text-gray-300 text-xs sm:text-sm lg:text-base">
+          {{ 'about.f2_desc' | translate }}
+        </p>
+      </div>
+
+      <div class="pt-4 sm:pt-6">
+        <div class="flex items-center mb-3 sm:mb-4 space-x-2 sm:space-x-3 feature-item">
+          <img src="arrow2.png" alt="" class="w-4 h-4 sm:w-5 sm:h-5" />
+          <h4 class="text-[#242424] dark:text-white text-sm sm:text-base lg:text-lg font-bold">
+            {{ 'about.f3_title' | translate }}
+          </h4>
+        </div>
+        <p class="text-[#242424] dark:text-gray-300 text-xs sm:text-sm lg:text-base">
+          {{ 'about.f3_desc' | translate }}
+        </p>
+      </div>
+
+      <div class="pt-4 sm:pt-6">
+        <div class="flex items-center mb-3 sm:mb-4 space-x-2 sm:space-x-3 feature-item">
+          <img src="arrow2.png" alt="" class="w-4 h-4 sm:w-5 sm:h-5" />
+          <h4 class="text-[#242424] dark:text-white text-sm sm:text-base lg:text-lg font-bold">
+            {{ 'about.f4_title' | translate }}
+          </h4>
+        </div>
+        <p class="text-[#242424] dark:text-gray-300 text-xs sm:text-sm lg:text-base">
+          {{ 'about.f4_desc' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="relative flex cursor-pointer mt-6 sm:mt-8 lg:mt-10">
+      <button
+        class="bg-[#FF4100] rounded-full text-white py-2 sm:py-3 px-4 sm:px-6 lg:px-8 text-xs sm:text-sm md:text-base font-semibold cursor-pointer hover:bg-orange-600 transition"
+      >
+        {{ 'common.get_started' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Images Section -->
+  <div class="w-full lg:w-1/2 order-2 lg:order-1 flex justify-center lg:justify-start image-col">
+    <div class="relative inline-block">
+      <!-- Main large image -->
+      <img
+        src="gm1.png"
+        alt="Main Workout"
+        class="w-full max-w-sm h-auto object-cover rounded-xl shadow-lg max-sm:ml-0 ml-6 lg:ml-12"
+      />
+
+      <!-- Top small image -->
+      <div class="absolute top-20 -right-60 img-top-right z-20 max-xl:hidden">
+        <img src="gm3.png" alt="Bench Workout" class="w-36 sm:w-40 lg:w-44 xl:w-55 h-auto object-cover rounded-xl shadow-lg" />
+      </div>
+
+      <!-- Bottom medium image -->
+      <div class="absolute bottom-5 -right-40 img-bottom-right z-10 max-xl:hidden">
+        <img src="gm2.png" alt="Cardio Workout" class="w-44 sm:w-48 lg:w-56 xl:w-70 h-auto object-cover rounded-xl shadow-lg" />
+      </div>
+    </div>
+  </div>
+</div>

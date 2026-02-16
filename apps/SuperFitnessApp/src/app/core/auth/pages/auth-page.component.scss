@@ -1,0 +1,116 @@
+:host {
+    display: block;
+    width: 99vw;
+    min-height: 100vh; // نخليه مرن بدل height ثابت
+    font-family: 'Poppins', sans-serif;
+    background-image: url('/auth-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(25px);
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 700px;
+    margin: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    top: 10px;
+
+    // Orange vertical divider
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1.5px;
+        height: 100%;
+        background: #ff4100;
+        z-index: 3;
+        border-radius: 2px;
+        transform: translateX(-50%);
+    }
+
+    .left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: transparent;
+        padding-top: 48px;
+        padding-bottom: 48px;
+        margin-right: 5px;
+
+        .logo-img {
+            width: 200px;
+            margin-bottom: 38px;
+            margin-top: 0;
+            display: block;
+        }
+
+        .character-img {
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .right {
+        flex: 0.9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        width: 100%;
+        padding: 15px 20px 20px 0;
+        border-radius: 0 20px 20px 0;
+        position: relative;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 95%;
+        min-width: 0;
+        flex-direction: column;
+        border-radius: 20px;
+        margin-top: 20px;
+
+        &::before {
+            display: none;
+        }
+
+        .left {
+            display: none;
+        }
+
+        .right {
+            flex: 1;
+            width: 100%;
+            justify-content: start;
+            border-radius: 20px;
+            padding:20px;
+        }
+    }
+}

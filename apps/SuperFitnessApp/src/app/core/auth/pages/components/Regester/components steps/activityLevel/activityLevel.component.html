@@ -1,0 +1,41 @@
+<div class="step-header mb-5">
+  <div class="arc"></div>
+  <div class="step-indicator">{{ currentStep }}/{{ stepsLength }}</div>
+</div>
+
+<div class="goal-step">
+  <h2 class="title">Your Regular Physical Activity Level ?</h2>
+  <p class="subtitle">This Helps Us Create Your Personalized Plan</p>
+
+  <div class="options" [formGroup]="form">
+    <label class="option">
+      <input type="radio" formControlName="activityLevel" value="level1" />
+      <span class="label-text">Rookie</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="activityLevel" value="level2" />
+      <span class="label-text">Beginner</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input
+        type="radio"
+        formControlName="activityLevel"
+        value="level3"
+      />
+      <span class="label-text">Intermediate</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="activityLevel" value="level4" />
+      <span class="label-text">Advance</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="activityLevel" value="level5" />
+      <span class="label-text">True Beast</span>
+      <span class="radio-circle"></span>
+    </label>
+  </div>
+</div>

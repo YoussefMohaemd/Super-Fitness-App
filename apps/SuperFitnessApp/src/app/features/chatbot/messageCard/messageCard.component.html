@@ -1,0 +1,51 @@
+@if(!isLoading()){
+<div
+  class="message-wrapper flex gap-2 mb-4 p-2"
+  [class.ai-msg]="isAI"
+  [class.human-msg]="isUser"
+  [class.flex-row-reverse]="isUser"
+>
+  <div
+    class="chat-pic-wrapper w-[36px] h-[36px] rounded-full"
+    [style.background]="
+      'url(' +
+      (isAI ? aiImage() : userImage()) +
+      ') no-repeat center center / cover'
+    "
+  ></div>
+  <div class="message-wrapper__content max-w-[230px] break-all">
+    <span>{{ message() }}</span>
+  </div>
+</div>
+}@else{
+<div class="message-wrapper flex gap-2 mb-4 p-2" [class.ai-msg]="isAI">
+  <div
+    class="chat-pic-wrapper w-[36px] h-[36px] rounded-full"
+    [style.background]="
+      'url(' +
+      (isAI ? aiImage() : userImage()) +
+      ') no-repeat center center / cover'
+    "
+  ></div>
+  <div class="message-wrapper__content max-w-[230px] break-all">
+    <p-skeleton
+      styleClass="mb-2 custom-skeleton"
+      borderRadius="16px"
+      width="10rem"
+      height=".5rem"
+    />
+    <p-skeleton
+      width="8rem"
+      height=".5rem"
+      styleClass="mb-2 custom-skeleton"
+      borderRadius="16px"
+    />
+    <p-skeleton
+      width="5rem"
+      height=".5rem"
+      styleClass="mb-2 custom-skeleton"
+      borderRadius="16px"
+    />
+  </div>
+</div>
+}

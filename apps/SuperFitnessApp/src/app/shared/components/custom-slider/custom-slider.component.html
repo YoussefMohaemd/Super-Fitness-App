@@ -1,0 +1,36 @@
+<p-carousel
+  [value]="groupedItems"
+  [circular]="true"
+  [showNavigators]="false"
+  [autoplayInterval]="autoplayInterval"
+  styleClass="custom-slider"
+  [numVisible]="1"
+  [numScroll]="1"
+>
+  <ng-template pTemplate="item" let-pageItems>
+    <div
+      class="grid gap-4 content-center p-4"
+      [style.display]="'grid'"
+      [style.gridAutoRows]="'max-content'"
+    >
+      @for (row of getRows(); track row) {
+      <div
+        class="grid gap-4"
+        [style.gridTemplateColumns]="'repeat(' + closNum + ', minmax(0, 1fr))'"
+      >
+        @for (meal of pageItems.slice(row * closNum, (row + 1) * closNum); track
+        meal.idMeal) {
+        <div class="meal-slide-item">
+          <app-custom-card
+            [itemId]="meal.idMeal"
+            [cardTitle]="meal.strMeal"
+            [cardImg]="meal.strMealThumb"
+            (onReadMore)="meal.idMeal ? onMealSelect(meal.idMeal) : null"
+          />
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </ng-template>
+</p-carousel>

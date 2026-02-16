@@ -1,0 +1,55 @@
+::ng-deep .custom-slider .p-carousel-indicator-button {
+  background: #f3f3f4;
+  width: 10px;
+  height: 10px;
+}
+
+::ng-deep
+  .custom-slider
+  .p-carousel-indicator-active
+  .p-carousel-indicator-button {
+  background: var(--primary-color);
+  width: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  ::ng-deep .custom-slider .p-carousel .p-carousel-prev,
+  ::ng-deep .custom-slider .p-carousel .p-carousel-next {
+    width: 35px;
+    height: 35px;
+  }
+}
+.custom-slider {
+  padding-bottom: 22px;
+}
+
+.page-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.row-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.meal-slide-item {
+  display: block;
+}
+
+/* keep empty placeholders invisible but occupying space */
+.meal-slide-item.placeholder {
+  visibility: hidden;
+  min-height: 1px;
+}
+
+/* mobile adjustments */
+@media (max-width: 575px) {
+  .custom-slider {
+    padding-bottom: 36px;
+  }
+  .meal-slide-item {
+    min-height: 140px;
+  }
+}

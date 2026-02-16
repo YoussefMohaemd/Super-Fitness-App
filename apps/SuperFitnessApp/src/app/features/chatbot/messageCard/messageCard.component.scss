@@ -1,0 +1,29 @@
+.message-wrapper__content {
+  gap: 8px;
+  padding: 8px;
+  backdrop-filter: blur(30px);
+  font-weight: medium;
+  box-shadow: 0px 0px 10px 0px #00000040;
+}
+
+.ai-msg .message-wrapper__content {
+  background: #24242480;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.human-msg .message-wrapper__content {
+  background: #ff6a0080;
+
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.chat-pic-wrapper {
+  box-shadow: 0px 0px 10px 0px #ff410040;
+}
+
+::ng-deep .custom-skeleton.p-skeleton {
+  background: #e08263;
+}

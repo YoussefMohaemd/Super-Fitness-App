@@ -1,0 +1,36 @@
+<div class="step-header mb-5">
+  <div class="arc"></div>
+  <div class="step-indicator">{{ currentStep }}/{{ stepsLength }}</div>
+</div>
+<div class="goal-step">
+  <h2 class="title">What Is Your Goal ?</h2>
+  <p class="subtitle">This Helps Us Create Your Personalized Plan</p>
+
+  <div class="options" [formGroup]="form">
+    <label class="option">
+      <input type="radio" formControlName="goal" value="Gain Weight" />
+      <span class="label-text">Gain Weight</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="goal" value="Lose Weight" />
+      <span class="label-text">Lose Weight</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="goal" value="Get Fitter" />
+      <span class="label-text">Get Fitter</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="goal" value="Gain More Flexible" />
+      <span class="label-text">Gain More Flexible</span>
+      <span class="radio-circle"></span>
+    </label>
+    <label class="option">
+      <input type="radio" formControlName="goal" value="Learn The Basic" />
+      <span class="label-text">Learn The Basic</span>
+      <span class="radio-circle"></span>
+    </label>
+  </div>
+</div>

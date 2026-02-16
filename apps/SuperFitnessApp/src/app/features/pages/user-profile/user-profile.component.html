@@ -1,0 +1,380 @@
+<div
+  class="overlay"
+  [ngClass]="{ 'overlay-light': !themeVal, 'overlay-dark': themeVal }"
+></div>
+<div
+  class="flex flex-col items-center mt-20 min-h-screen justify-center relative z-10 px-2 py-8"
+  [ngClass]="{ 'text-dark': !themeVal, 'text-light': themeVal }"
+>
+  <div class="w-full max-w-5xl mx-auto">
+    <!-- Profile top section -->
+    <div
+      class="flex flex-col md:flex-row gap-4 md:gap-8 mb-8 w-full justify-center items-stretch"
+    >
+      <div class="profile-top-card w-full md:w-1/3">
+        <div class="profile-top-title">{{ 'profile.your_goal' | translate }}</div>
+        <div class="profile-top-sub">{{ 'profile.tap_to_change' | translate }}</div>
+        <div class="flex justify-center md:justify-start w-full">
+          <button
+            class="profile-top-btn flex items-center gap-2 cursor-pointer"
+            (click)="openEditPopup('goal')"
+          >
+            <span class="profile-top-btn-text">
+              {{ userProfile?.goal || ('profile.set_goal' | translate) }}
+            </span>
+            <img src="/Change.png" alt="" class="w-[24px] h-[24px]" />
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-top-card w-full md:w-1/3">
+        <div class="profile-top-title">{{ 'profile.level' | translate }}</div>
+        <div class="profile-top-sub">{{ 'profile.tap_to_change' | translate }}</div>
+        <div class="flex justify-center md:justify-start w-full">
+          <button
+            class="profile-top-btn flex items-center gap-2"
+            (click)="openEditPopup('level')"
+          >
+            <span class="profile-top-btn-text">
+              {{ userProfile?.activityLevel || ('profile.set_level' | translate) }}
+            </span>
+            <img src="/Change.png" alt="" class="w-[24px] h-[24px]" />
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-top-card w-full md:w-1/3">
+        <div class="profile-top-title">{{ 'profile.weight' | translate }}</div>
+        <div class="profile-top-sub">{{ 'profile.tap_to_change' | translate }}</div>
+        <div class="flex justify-center md:justify-start w-full">
+          <button
+            class="profile-top-btn flex items-center gap-2"
+            (click)="openEditPopup('weight')"
+          >
+            <span class="profile-top-btn-text">
+              {{ userProfile?.weight || ('profile.set_weight' | translate) }}
+            </span>
+            <img src="/Change.png" alt="" class="w-[24px] h-[24px]" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid for profile cards -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 auto-rows-fr"
+    >
+      <div class="profile-card" (click)="openResetDialog()">
+        <span class="profile-icon">
+          <img class="m-4" src="/ChangeIconOrange.png" alt="" />
+        </span>
+        <div>{{ 'profile.change_password' | translate }}</div>
+      </div>
+
+      <div class="profile-card">
+        <img class="m-4" src="/Language.png" alt="" />
+        <div class="text-center mb-2">{{ 'profile.select_language' | translate }}</div>
+        <div class="lang-btn-group">
+          <button
+            type="button"
+            class="lang-btn"
+            [ngClass]="{ selected: !langVal }"
+            (click)="setLang('en')"
+          >
+            {{ 'profile.english' | translate }}
+          </button>
+          <button
+            type="button"
+            class="lang-btn"
+            [ngClass]="{ selected: langVal }"
+            (click)="setLang('ar')"
+          >
+            {{ 'profile.arabic' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <img class="m-4" src="/line-md_light-dark.png" alt="" />
+        <div class="flex flex-col items-center">
+          <div>
+            {{ 'profile.mood' | translate }}
+            <span class="profile-accent">{{ 'profile.mood_dark' | translate }}</span>
+          </div>
+          <label class="switch mt-2">
+            <input (click)="toggleTheme()" type="checkbox" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <img class="m-4" src="/Security Warning.png" alt="" />
+        <div>{{ 'profile.privacy_policy' | translate }}</div>
+      </div>
+
+      <div class="profile-card">
+        <img class="m-4" src="/Lock Setting.png" alt="" />
+        <div>{{ 'profile.security' | translate }}</div>
+      </div>
+
+      <div class="profile-card">
+        <img class="m-4" src="/Help.png" alt="" />
+        <div>{{ 'profile.help' | translate }}</div>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div (click)="openLogoutDialog()" class="flex justify-center">
+      <div class="profile-card logout cursor-pointer">
+        <img class="m-4" src="/logout.png" alt="" />
+        <div class="profile-accent text-3xl">{{ 'profile.logout' | translate }}</div>
+      </div>
+    </div>
+
+    <!-- Logout Confirmation Dialog -->
+    <p-dialog
+      header="{{ 'profile.confirm_logout' | translate }}"
+      [(visible)]="showLogoutDialog"
+      [modal]="true"
+      [closable]="false"
+      [dismissableMask]="true"
+      [style]="{ width: '350px', 'border-radius': '18px' }"
+      [contentStyle]="{
+        background: themeVal ? '#181818' : '#fff',
+        color: themeVal ? '#fff' : '#181818',
+        padding: '2rem 1.5rem'
+      }"
+      [baseZIndex]="10000"
+      [styleClass]="
+        themeVal
+          ? 'custom-dark-dialog pro-dialog'
+          : 'custom-light-dialog pro-dialog'
+      "
+      (onHide)="closeLogoutDialog()"
+    >
+      <div class="logout-dialog-content">
+        <i
+          class="pi pi-sign-out"
+          style="color: #ff4100; font-size: 2.2rem; display: block; margin-bottom: 1.2rem;"
+        ></i>
+        <div class="logout-dialog-title">
+          {{ 'profile.logout_question' | translate }}
+        </div>
+        <div class="logout-dialog-actions">
+          <button
+            pButton
+            type="button"
+            [label]="'profile.cancel' | translate"
+            class="pro-btn"
+            style="background: #e0e0e0; color: #222; margin-right: 1rem"
+            (click)="closeLogoutDialog()"
+          ></button>
+          <button
+            pButton
+            type="button"
+            [label]="'profile.logout_btn' | translate"
+            class="pro-btn"
+            (click)="confirmLogout()"
+          ></button>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+</div>
+
+<!-- PrimeNG Dialog for Reset Password -->
+<p-dialog
+  header="{{ 'profile.change_password_header' | translate }}"
+  [(visible)]="showResetDialog"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '400px', 'border-radius': '18px' }"
+  [contentStyle]="{
+    background: themeVal ? '#181818' : '#fff',
+    color: themeVal ? '#fff' : '#181818',
+    padding: '2rem 1.5rem'
+  }"
+  [baseZIndex]="10000"
+  [styleClass]="
+    themeVal
+      ? 'custom-dark-dialog pro-dialog text-light'
+      : 'custom-light-dialog pro-dialog text-dark'
+  "
+  (onHide)="closeResetDialog()"
+>
+  <form [formGroup]="resetForm" (ngSubmit)="submitReset()" class="pro-form">
+    <div class="pro-dialog-title">
+      <i class="pi pi-lock" style="color: #ff4100; font-size: 2rem"></i>
+      <span>{{ 'profile.reset_your_password' | translate }}</span>
+    </div>
+    <div class="pro-field p-field mb-4">
+      <div class="pro-field-row" style="position: relative">
+        <input
+          id="password"
+          [type]="showPassword ? 'text' : 'password'"
+          pInputText
+          formControlName="password"
+          class="pro-input"
+          [placeholder]="'profile.password_placeholder' | translate"
+        />
+        <button
+          type="button"
+          (click)="toggleShowPassword()"
+          class="show-password-btn"
+          tabindex="-1"
+        >
+          <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+        </button>
+      </div>
+    </div>
+    <div class="pro-field p-field mb-4">
+      <div class="pro-field-row" style="position: relative">
+        <input
+          id="newPassword"
+          [type]="showNewPassword ? 'text' : 'password'"
+          pInputText
+          formControlName="newPassword"
+          class="pro-input"
+          [placeholder]="'profile.new_password_placeholder' | translate"
+        />
+        <button
+          type="button"
+          (click)="toggleShowNewPassword()"
+          class="show-password-btn"
+          tabindex="-1"
+        >
+          <i class="pi" [ngClass]="showNewPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+        </button>
+      </div>
+    </div>
+    @if (resetError) {
+      <div class="p-error mb-2">{{ resetError }}</div>
+    }
+    @if (resetSuccess) {
+      <div class="p-success mb-2">{{ resetSuccess }}</div>
+    }
+    <button
+      pButton
+      type="submit"
+      [label]="'profile.change_password_button' | translate"
+      [disabled]="resetForm.invalid || resetLoading"
+      [style.background]="'#ff4100'"
+      [style.color]="themeVal ? '#000' : '#fff'"
+      class="w-full pro-btn"
+    ></button>
+  </form>
+</p-dialog>
+
+@if (showPasswordChangeSuccess) {
+<div class="password-success-overlay animate-fade-in">
+  <div class="password-success-message" [ngClass]="{ dark: themeVal }">
+    <i class="pi pi-check-circle"></i>
+    {{ 'profile.password_changed_success' | translate }}
+  </div>
+</div>
+}
+
+<!-- Edit User Data Popup -->
+<p-dialog
+  [header]="'profile.edit_title' | translate:{ field: (editField | titlecase) }"
+  [(visible)]="showEditPopup"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '500px', 'border-radius': '18px' }"
+  [contentStyle]="{
+    background: themeVal ? '#181818' : '#fff',
+    color: themeVal ? '#fff' : '#181818',
+    padding: '2.5rem 2.5rem',
+    overflow: 'visible'
+  }"
+  [baseZIndex]="10000"
+  [styleClass]="
+    themeVal
+      ? 'custom-dark-dialog pro-dialog text-light'
+      : 'custom-light-dialog pro-dialog text-dark'
+  "
+  (onHide)="closeEditPopup()"
+>
+  <form [formGroup]="editForm" (ngSubmit)="submitEdit()" class="pro-form">
+    <div class="pro-dialog-title">
+      <i class="pi pi-user-edit" style="color: #ff4100; font-size: 2rem"></i>
+      <span>{{ 'profile.edit_title' | translate:{ field: (editField | titlecase) } }}</span>
+    </div>
+    <div *ngIf="editField === 'goal'">
+      <div class="mb-2">
+        {{ 'profile.current' | translate }} <b>{{ userProfile?.goal }}</b>
+      </div>
+      <div class="goal-radio-group">
+        <button
+          *ngFor="let opt of goalOptions"
+          type="button"
+          class="goal-radio-btn"
+          [ngClass]="{ selected: editForm.value.goal === opt.value, dark: themeVal }"
+          (click)="editForm.patchValue({ goal: opt.value })"
+        >
+          <span>{{ opt.label }}</span>
+          <span class="radio-indicator">
+            <span *ngIf="editForm.value.goal === opt.value" class="radio-dot"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="editField === 'level'">
+      <div class="mb-2">
+        {{ 'profile.current' | translate }} <b>{{ userProfile?.activityLevel }}</b>
+      </div>
+      <div class="goal-radio-group">
+        <button
+          *ngFor="let opt of levelOptions"
+          type="button"
+          class="goal-radio-btn"
+          [ngClass]="{ selected: editForm.value.level === opt.value, dark: themeVal }"
+          (click)="editForm.patchValue({ level: opt.value })"
+        >
+          <span>{{ opt.label }}</span>
+          <span class="radio-indicator">
+            <span *ngIf="editForm.value.level === opt.value" class="radio-dot"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="editField === 'weight'">
+      <div class="mb-2">
+        {{ 'profile.current' | translate }} <b>{{ userProfile?.weight }}</b>
+      </div>
+      <div class="weight-input-group">
+        <input
+          type="number"
+          formControlName="weight"
+          class="pro-input weight-input"
+          min="1"
+          max="500"
+        />
+        <span class="weight-unit">kg</span>
+      </div>
+      <input
+        #weightSlider
+        type="range"
+        min="1"
+        max="500"
+        [value]="editForm.value.weight"
+        (input)="editForm.patchValue({ weight: +weightSlider.value })"
+        class="weight-slider"
+      />
+    </div>
+    <div *ngIf="editError" class="p-error mb-2">{{ editError }}</div>
+    <div *ngIf="editSuccess" class="p-success mb-2">{{ editSuccess }}</div>
+    <button
+      pButton
+      type="submit"
+      [label]="'profile.save' | translate"
+      [disabled]="editForm.invalid || editLoading"
+      [style.background]="'#ff4100'"
+      [style.color]="themeVal ? '#000' : '#fff'"
+      class="w-full pro-btn"
+    ></button>
+  </form>
+</p-dialog>

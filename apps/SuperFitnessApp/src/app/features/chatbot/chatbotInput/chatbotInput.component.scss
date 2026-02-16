@@ -1,0 +1,17 @@
+.p-inputtext {
+  background-color: transparent;
+  border: 1px solid #f3f3f4;
+  border-radius: 20px;
+  color: #fff;
+  &:enabled:focus {
+    border-color: var(--primary-color);
+  }
+}
+
+.p-inputtext {
+  &::placeholder {
+    color: #fff;
+    opacity: 0.7;
+    font-size: 12px;
+  }
+}
