@@ -19,7 +19,7 @@ import { CustomSliderComponent } from '../../../shared/components/custom-slider/
   ],
   standalone: true,
   templateUrl: './fitness-class.component.html',
-  styleUrls: ['./fitness-class.component.Scss'],
+  styleUrls: ['./fitness-class.component.css'],
 })
 export class FitnessClassComponent implements OnInit {
   muscleGroups: MusclesGroup[] = [];
