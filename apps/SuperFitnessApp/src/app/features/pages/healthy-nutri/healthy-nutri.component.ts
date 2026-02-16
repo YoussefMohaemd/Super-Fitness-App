@@ -38,9 +38,9 @@ export class HealthyNutriComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   displayedMeals: Meals[] = [];
   selectedMealDetails: MealDetails | null = null;
-  themeVal: boolean = false;
-  langVal: boolean = false;
-  isLoading: boolean = false; // 🔹 New loading state
+  themeVal = false;
+  langVal = false;
+  isLoading = false; // 🔹 New loading state
   private themeSubscription?: Subscription;
   private mealsSubscription?: Subscription;
 
@@ -52,7 +52,7 @@ export class HealthyNutriComponent implements OnInit, OnDestroy {
     private themeManager: ThemeManagerService,
     private _translateManager: TranslateManagerService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
   getCategories(): void {

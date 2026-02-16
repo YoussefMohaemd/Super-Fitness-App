@@ -16,7 +16,7 @@ export class ThemeManagerService {
   private currentTheme = signal<Theme>('light');
 
   initTheme() {
-    let theme = this.cookiesManager.getCookie(this.themeKey);
+    const theme = this.cookiesManager.getCookie(this.themeKey);
 
     if (theme) {
       this.setHTMLTheme(theme as Theme);
@@ -40,7 +40,7 @@ export class ThemeManagerService {
 
   toggleTheme() {
     const currentTheme = this.cookiesManager.getCookie(this.themeKey);
-    let newTheme: Theme =
+    const newTheme: Theme =
       currentTheme == 'light' || currentTheme == '' ? 'dark' : 'light';
     this.setCurrentTheme(newTheme);
     this.setHTMLTheme(newTheme);

@@ -15,7 +15,7 @@ export class ExerciseService {
   getRandomExercises(
     targetMuscleGroupId: string,
     difficultyLevelId: string,
-    limit: number = 10
+    limit = 10
   ): Observable<Exercise> {
     const params = {
       targetMuscleGroupId,

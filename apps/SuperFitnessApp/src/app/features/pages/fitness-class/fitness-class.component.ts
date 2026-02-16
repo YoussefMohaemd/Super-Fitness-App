@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MusclesGroup } from '../../../core/models/allMuscles';
 import { MusclesService } from '../../../core/services/muscles/muscles.service';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ import { CustomSliderComponent } from '../../../shared/components/custom-slider/
   templateUrl: './fitness-class.component.html',
   styleUrls: ['./fitness-class.component.scss'],
 })
-export class FitnessClassComponent {
+export class FitnessClassComponent implements OnInit {
   muscleGroups: MusclesGroup[] = [];
   displayedMuscleGroups: MusclesGroup[] = [];
   selectedGroupId = 'full_body';

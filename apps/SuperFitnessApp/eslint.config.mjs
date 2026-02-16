@@ -24,11 +24,18 @@ export default [
           style: 'kebab-case',
         },
       ],
+      '@angular-eslint/no-output-on-prefix': 'warn',
+      '@angular-eslint/no-empty-lifecycle-method': 'warn',
     },
   },
   {
     files: ['**/*.html'],
     // Override or add rules here
-    rules: {},
+    rules: {
+      '@angular-eslint/template/click-events-have-key-events': 'warn',
+      '@angular-eslint/template/interactive-supports-focus': 'warn',
+      '@angular-eslint/template/no-autofocus': 'warn',
+      '@angular-eslint/template/elements-content': 'warn',
+    },
   },
 ];

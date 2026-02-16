@@ -19,7 +19,7 @@
       <p class="text-center">Enter the 6-digit code sent to your email</p>
       <form [formGroup]="otpForm" (ngSubmit)="submitOtp()">
         <div class="otp-inputs">
-          <input autofocus #otpInput *ngFor="let i of [1,2,3,4,5,6]" type="text" maxlength="1" [formControlName]="'digit' + i" (input)="moveToNext($event, i)" /> 
+          <input #otpInput *ngFor="let i of [1,2,3,4,5,6]" type="text" maxlength="1" [formControlName]="'digit' + i" (input)="moveToNext($event, i)" /> 
 
          
         </div>

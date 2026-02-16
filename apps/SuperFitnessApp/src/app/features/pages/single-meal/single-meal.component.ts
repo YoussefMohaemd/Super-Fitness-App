@@ -25,7 +25,7 @@ export class SingleMealComponent implements OnInit, OnDestroy {
   isLoading = false;
   showSidebar = false;
 
-  currentFilter: string = 'breakfast';
+  currentFilter = 'breakfast';
   filterTabs: tabData[] = [{ id: 'breakfast', title: 'Breakfast' }];
 
   private themeSubscription?: Subscription;
@@ -35,7 +35,7 @@ export class SingleMealComponent implements OnInit, OnDestroy {
     private healthyService: HealthyServiceService,
     private themeManager: ThemeManagerService,
     private _translateManager: TranslateManagerService,
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private route: ActivatedRoute
   ) {}
 

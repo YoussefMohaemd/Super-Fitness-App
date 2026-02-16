@@ -33,7 +33,7 @@ export class SingleClassComponent implements OnInit {
   muscleGroupDetail: MuscleGroupDetail | null = null;
   exercises: ExerciseGroup[] = [];
   selectedExercise: ExerciseGroup | null = null;
-  selectedDifficulty: string = '67c797e226895f87ce0aa94b'; // Beginner by default
+  selectedDifficulty = '67c797e226895f87ce0aa94b'; // Beginner by default
   loading = true;
   error = '';
   themeVal = false;

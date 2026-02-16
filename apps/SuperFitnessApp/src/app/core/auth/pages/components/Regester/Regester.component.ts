@@ -1,4 +1,4 @@
-import { AuthApiService } from '../../../../../../../../../projects/auth-api/src/lib/auth-api.service';
+import { AuthApiService } from '@fitness-org/auth-api';
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {

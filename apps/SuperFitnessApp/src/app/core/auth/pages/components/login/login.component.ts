@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
-import { AuthApiService } from '../../../../../../../../../projects/auth-api/src/lib/auth-api.service';
+import { AuthApiService } from '@fitness-org/auth-api';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -19,7 +19,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   private ngUnsubscribe = new Subject<void>();
   private _router = inject(Router);
   private _authApiService = inject(AuthApiService);
@@ -30,7 +30,7 @@ export class LoginComponent {
     password: ['', [Validators.required]],
   });
 
-  errorMessage: string = '';
+  errorMessage = '';
 
   login() {
     if (this.loginForm.invalid) return;

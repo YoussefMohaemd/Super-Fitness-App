@@ -19,7 +19,7 @@ export class TranslateManagerService {
     this.translateService.addLangs(['ar', 'en']);
     this.translateService.setDefaultLang('en');
   
-    let lang = (this.cookiesManager.getCookie(this.langKey) as string) || 'en';
+    const lang = (this.cookiesManager.getCookie(this.langKey) as string) || 'en';
   
     this.setHTMLLang(lang as Lang);
     this.setCurrentLang(lang as Lang);
@@ -34,8 +34,8 @@ export class TranslateManagerService {
   
 
   toggleLanguage(): void {
-    let currentLang = this.cookiesManager.getCookie(this.langKey);
-    let newLang: Lang = currentLang == '' || currentLang == 'en' ? 'ar' : 'en';
+    const currentLang = this.cookiesManager.getCookie(this.langKey);
+    const newLang: Lang = currentLang == '' || currentLang == 'en' ? 'ar' : 'en';
     this.changeLanguage(newLang);
   }
 

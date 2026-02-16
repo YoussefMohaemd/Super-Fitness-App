@@ -58,7 +58,7 @@ export class ChatbotWindowComponent
   chatHistory$!: Observable<ChatMessage[]>;
   isLoading$!: Observable<boolean>;
 
-  isOpen: boolean = false;
+  isOpen = false;
   chatMessagesList: ChatMessage[] = [] as ChatMessage[];
 
   private readonly destroy$ = new Subject<void>();
@@ -84,7 +84,7 @@ export class ChatbotWindowComponent
     }, 1000);
   }
 
-  sendMessage(message: string, isAutoMsg: boolean = false) {
+  sendMessage(message: string, isAutoMsg = false) {
     if (!isAutoMsg) {
       this.setUserResponse(message);
     }

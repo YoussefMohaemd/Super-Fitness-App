@@ -23,8 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class UserProfileComponent implements OnInit {
 
   constructor() { }
-  themeVal: boolean = false;
-  langVal: boolean = false;
+  themeVal = false;
+  langVal = false;
   fetchIsDone = false;
 
   private readonly _themeManager = inject(ThemeManagerService); 

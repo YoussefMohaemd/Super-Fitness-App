@@ -46,7 +46,7 @@ export class CustomSliderComponent implements OnInit, OnDestroy, OnChanges {
     }
   };
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit() {
     // start with requested rows/cols

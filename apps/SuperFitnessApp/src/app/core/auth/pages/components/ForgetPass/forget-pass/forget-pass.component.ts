@@ -1,4 +1,4 @@
-import { Component, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren, inject, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ enum Step {
   templateUrl: './forget-pass.component.html',
   styleUrls: ['./forget-pass.component.scss'],
 })
-export class ForgetPassComponent {
+export class ForgetPassComponent implements OnDestroy {
   private ngUnsubscribe = new Subject<void>();
   private _authApiService = inject(AuthApiService);
   private fb = inject(FormBuilder);
