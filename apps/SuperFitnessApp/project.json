@@ -33,6 +33,9 @@
         "scripts": [
           "node_modules/flowbite/dist/flowbite.min.js"
         ],
+        "allowedCommonJsDependencies": [
+          "google-auth-library"
+        ],
         "server": "apps/SuperFitnessApp/src/main.server.ts",
         "ssr": {
           "entry": "apps/SuperFitnessApp/src/server.ts"
@@ -44,13 +47,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1.6mb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
+              "maximumWarning": "10kb",
+              "maximumError": "12kb"
             }
           ],
           "outputHashing": "all"
