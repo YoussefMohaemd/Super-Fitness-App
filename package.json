@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:dev": "npx nx s SuperFitnessApp"
+    "start:dev": "npx nx s SuperFitnessApp",
+    "build": "npx nx build auth-api --configuration=production && npx nx build SuperFitnessApp --configuration=production"
   },
   "private": true,
   "dependencies": {
